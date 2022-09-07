@@ -123,7 +123,7 @@ impl Channel {
     ///
     /// Note that this does not make sense for all channel types and may be
     /// ignored by the server despite returning success.
-    pub fn setenv(&mut self, var: &str, val: &str) -> Result<(), Error> {
+    pub fn setenv(&mut self, var: &[u8], val: &[u8]) -> Result<(), Error> {
         let locked = self.lock();
         unsafe {
             locked.sess.rc(raw::libssh2_channel_setenv_ex(
